@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EgitimkampiEfDBModelStoreContainer" CdmEntityContainer="EgitimkampiEfDBEntities1">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="EgitimkampiEfDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLCustomer">
+      <EntityTypeMapping TypeName="EgitimkampiEfDBModel.TBLCustomer">
+        <MappingFragment StoreEntitySet="TBLCustomer">
+          <ScalarProperty Name="CustomerBalance" ColumnName="CustomerBalance" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Customersurname" ColumnName="Customersurname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLGuide">
+      <EntityTypeMapping TypeName="EgitimkampiEfDBModel.TBLGuide">
+        <MappingFragment StoreEntitySet="TBLGuide">
+          <ScalarProperty Name="GuideId" ColumnName="GuideId" />
+          <ScalarProperty Name="GuideName" ColumnName="GuideName" />
+          <ScalarProperty Name="GuideSurname" ColumnName="GuideSurname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLLocation">
+      <EntityTypeMapping TypeName="EgitimkampiEfDBModel.TBLLocation">
+        <MappingFragment StoreEntitySet="TBLLocation">
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="LocationCity" ColumnName="LocationCity" />
+          <ScalarProperty Name="LocationCountry" ColumnName="LocationCountry" />
+          <ScalarProperty Name="LocationCapasity" ColumnName="LocationCapasity" />
+          <ScalarProperty Name="LocationPrice" ColumnName="LocationPrice" />
+          <ScalarProperty Name="DayNight" ColumnName="DayNight" />
+          <ScalarProperty Name="GuideId" ColumnName="GuideId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLADMİN">
+      <EntityTypeMapping TypeName="EgitimkampiEfDBModel.TBLADMİN">
+        <MappingFragment StoreEntitySet="TBLADMİN">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="Usernames" ColumnName="Usernames" />
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

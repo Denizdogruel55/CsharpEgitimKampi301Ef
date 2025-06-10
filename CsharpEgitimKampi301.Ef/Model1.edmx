@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EgitimkampiEfDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TBLADMİN">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usernames" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLCustomer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customersurname" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerBalance" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="TBLGuide">
+          <Key>
+            <PropertyRef Name="GuideId" />
+          </Key>
+          <Property Name="GuideId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GuideName" Type="nvarchar" MaxLength="50" />
+          <Property Name="GuideSurname" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLLocation">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationCity" Type="nvarchar" MaxLength="50" />
+          <Property Name="LocationCountry" Type="nvarchar" MaxLength="50" />
+          <Property Name="LocationCapasity" Type="tinyint" />
+          <Property Name="LocationPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DayNight" Type="nvarchar" MaxLength="50" />
+          <Property Name="GuideId" Type="int" />
+        </EntityType>
+        <Association Name="FK_TBLLocation_TBLGuide">
+          <End Role="TBLGuide" Type="Self.TBLGuide" Multiplicity="0..1" />
+          <End Role="TBLLocation" Type="Self.TBLLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLGuide">
+              <PropertyRef Name="GuideId" />
+            </Principal>
+            <Dependent Role="TBLLocation">
+              <PropertyRef Name="GuideId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EgitimkampiEfDBModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLADMİN" EntityType="Self.TBLADMİN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLCustomer" EntityType="Self.TBLCustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLGuide" EntityType="Self.TBLGuide" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLLocation" EntityType="Self.TBLLocation" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBLLocation_TBLGuide" Association="Self.FK_TBLLocation_TBLGuide">
+            <End Role="TBLGuide" EntitySet="TBLGuide" />
+            <End Role="TBLLocation" EntitySet="TBLLocation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EgitimkampiEfDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TBLCustomer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customersurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerBalance" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="TBLGuide">
+          <Key>
+            <PropertyRef Name="GuideId" />
+          </Key>
+          <Property Name="GuideId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GuideName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GuideSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBLLocation" Relationship="Self.FK_TBLLocation_TBLGuide" FromRole="TBLGuide" ToRole="TBLLocation" />
+        </EntityType>
+        <EntityType Name="TBLLocation">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LocationCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LocationCapasity" Type="Byte" />
+          <Property Name="LocationPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DayNight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GuideId" Type="Int32" />
+          <NavigationProperty Name="TBLGuide" Relationship="Self.FK_TBLLocation_TBLGuide" FromRole="TBLLocation" ToRole="TBLGuide" />
+        </EntityType>
+        <Association Name="FK_TBLLocation_TBLGuide">
+          <End Role="TBLGuide" Type="Self.TBLGuide" Multiplicity="0..1" />
+          <End Role="TBLLocation" Type="Self.TBLLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLGuide">
+              <PropertyRef Name="GuideId" />
+            </Principal>
+            <Dependent Role="TBLLocation">
+              <PropertyRef Name="GuideId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EgitimkampiEfDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TBLCustomer" EntityType="Self.TBLCustomer" />
+          <EntitySet Name="TBLGuide" EntityType="Self.TBLGuide" />
+          <EntitySet Name="TBLLocation" EntityType="Self.TBLLocation" />
+          <AssociationSet Name="FK_TBLLocation_TBLGuide" Association="Self.FK_TBLLocation_TBLGuide">
+            <End Role="TBLGuide" EntitySet="TBLGuide" />
+            <End Role="TBLLocation" EntitySet="TBLLocation" />
+          </AssociationSet>
+          <EntitySet Name="TBLADMİN" EntityType="EgitimkampiEfDBModel.TBLADMİN" />
+        </EntityContainer>
+        <EntityType Name="TBLADMİN">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usernames" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EgitimkampiEfDBModelStoreContainer" CdmEntityContainer="EgitimkampiEfDBEntities1">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EgitimkampiEfDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLCustomer">
+            <EntityTypeMapping TypeName="EgitimkampiEfDBModel.TBLCustomer">
+              <MappingFragment StoreEntitySet="TBLCustomer">
+                <ScalarProperty Name="CustomerBalance" ColumnName="CustomerBalance" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Customersurname" ColumnName="Customersurname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLGuide">
+            <EntityTypeMapping TypeName="EgitimkampiEfDBModel.TBLGuide">
+              <MappingFragment StoreEntitySet="TBLGuide">
+                <ScalarProperty Name="GuideId" ColumnName="GuideId" />
+                <ScalarProperty Name="GuideName" ColumnName="GuideName" />
+                <ScalarProperty Name="GuideSurname" ColumnName="GuideSurname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLLocation">
+            <EntityTypeMapping TypeName="EgitimkampiEfDBModel.TBLLocation">
+              <MappingFragment StoreEntitySet="TBLLocation">
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="LocationCity" ColumnName="LocationCity" />
+                <ScalarProperty Name="LocationCountry" ColumnName="LocationCountry" />
+                <ScalarProperty Name="LocationCapasity" ColumnName="LocationCapasity" />
+                <ScalarProperty Name="LocationPrice" ColumnName="LocationPrice" />
+                <ScalarProperty Name="DayNight" ColumnName="DayNight" />
+                <ScalarProperty Name="GuideId" ColumnName="GuideId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLADMİN">
+            <EntityTypeMapping TypeName="EgitimkampiEfDBModel.TBLADMİN">
+              <MappingFragment StoreEntitySet="TBLADMİN">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="Usernames" ColumnName="Usernames" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

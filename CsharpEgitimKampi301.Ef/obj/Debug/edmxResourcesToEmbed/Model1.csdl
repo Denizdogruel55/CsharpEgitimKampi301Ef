@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EgitimkampiEfDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TBLCustomer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Customersurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerBalance" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="TBLGuide">
+    <Key>
+      <PropertyRef Name="GuideId" />
+    </Key>
+    <Property Name="GuideId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GuideName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GuideSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TBLLocation" Relationship="Self.FK_TBLLocation_TBLGuide" FromRole="TBLGuide" ToRole="TBLLocation" />
+  </EntityType>
+  <EntityType Name="TBLLocation">
+    <Key>
+      <PropertyRef Name="LocationId" />
+    </Key>
+    <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LocationCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LocationCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LocationCapasity" Type="Byte" />
+    <Property Name="LocationPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DayNight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GuideId" Type="Int32" />
+    <NavigationProperty Name="TBLGuide" Relationship="Self.FK_TBLLocation_TBLGuide" FromRole="TBLLocation" ToRole="TBLGuide" />
+  </EntityType>
+  <Association Name="FK_TBLLocation_TBLGuide">
+    <End Role="TBLGuide" Type="Self.TBLGuide" Multiplicity="0..1" />
+    <End Role="TBLLocation" Type="Self.TBLLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLGuide">
+        <PropertyRef Name="GuideId" />
+      </Principal>
+      <Dependent Role="TBLLocation">
+        <PropertyRef Name="GuideId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EgitimkampiEfDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TBLCustomer" EntityType="Self.TBLCustomer" />
+    <EntitySet Name="TBLGuide" EntityType="Self.TBLGuide" />
+    <EntitySet Name="TBLLocation" EntityType="Self.TBLLocation" />
+    <AssociationSet Name="FK_TBLLocation_TBLGuide" Association="Self.FK_TBLLocation_TBLGuide">
+      <End Role="TBLGuide" EntitySet="TBLGuide" />
+      <End Role="TBLLocation" EntitySet="TBLLocation" />
+    </AssociationSet>
+    <EntitySet Name="TBLADMİN" EntityType="EgitimkampiEfDBModel.TBLADMİN" />
+  </EntityContainer>
+  <EntityType Name="TBLADMİN">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Usernames" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>
